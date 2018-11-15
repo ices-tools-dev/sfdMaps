@@ -1,0 +1,5 @@
+^README\.Rmd$
+^data-raw$
+^LICENSE\.md$
+^sfdMaps\.Rproj$
+^\.Rproj\.user$
