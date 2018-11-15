@@ -8,5 +8,5 @@ make_raster <- function(value, coords, resolution = 0.05) {
                       resolution = resolution,
                       crs = sp::CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"))
 
-  raster::rasterize(loc, r, value, fun = mean)
+  raster::rasterize(loc, r, value, fun = sum)
 }
