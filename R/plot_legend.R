@@ -3,8 +3,8 @@ plot_legend <- function(breaks, col, title, digits = 0, greater_than_zero = TRUE
   ncol <- length(breaks) - 1
   fbreaks <- formatC(breaks, format = "f", digits = digits)
 
-  if (greater_than_zero && fbreaks[1] == 0) {
-    fbreaks[1] <- "> 0"
+  if (greater_than_zero && as.numeric(fbreaks[1]) == 0) {
+    fbreaks[1] <- ">0"
   }
 
   labels <- paste0(fbreaks[(ncol):1], " - ", fbreaks[(ncol + 1):2])
