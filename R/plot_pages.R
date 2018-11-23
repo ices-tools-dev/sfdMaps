@@ -5,7 +5,6 @@ plotPages <- function(value, coords, by,
                       breaks = NULL,
                       palette = RColorBrewer::brewer.pal(9, "YlOrRd"),
                       res = 0.05, digits = NULL) {
-
   # save par setting so we can reset
   op <- par(no.readonly = TRUE)
   on.exit(par(op))
@@ -32,10 +31,15 @@ plotPages <- function(value, coords, by,
   # set up colour
   col <- colorRampPalette(palette)(length(breaks) - 1)
 
-  # set up breaks
+  # set up breaks - trim to max value
   maxvalue <- max(value, na.rm = TRUE)
   breaks <- c(breaks[breaks < maxvalue], maxvalue)
   col <- col[1:(length(breaks) - 1)]
+
+  # set up breaks - trim to min value
+  minvalue <- min(value, na.rm = TRUE)
+  breaks <- c(minvalue, breaks[breaks > minvalue])
+  col <- col[length(col) - length(breaks):1 + 1]
 
   # set up page
   nplots <- length(unique(by))

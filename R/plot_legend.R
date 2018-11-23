@@ -1,8 +1,14 @@
-plot_legend <- function(breaks, col, title, digits = 0) {
+plot_legend <- function(breaks, col, title, digits = 0, greater_than_zero = TRUE) {
 
   ncol <- length(breaks) - 1
   fbreaks <- formatC(breaks, format = "f", digits = digits)
   labels <- paste0(fbreaks[(ncol):1], " - ", fbreaks[(ncol + 1):2])
+
+  if (greater_than_zero) {
+    if (fbreaks[1] == 0) {
+      labels[1] <- paste0("> 0")
+    }
+  }
 
   par(fig = c(0, 1, 0, 1), oma = c(0.2, 0.2, 0.2, 0.2), mar = c(0, 0, 0, 0), new = TRUE)
   plot(0, 0, type = 'n', bty = 'n', xaxt = 'n', yaxt = 'n')
